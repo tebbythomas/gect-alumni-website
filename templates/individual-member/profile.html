@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+View Profile
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% include 'partials/_alerts.html' %}
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'members' %}">Members</a></li>
+                <li>Member</li>
+            </ul>
+        </div>
+        {% if request.user.is_authenticated %}
+                <div class="change-password-button">
+                    <form class="change-password" action="{% url 'change_password' %}">
+                        <input type="submit" value="Change Password" />
+                    </form>
+                </div>
+                <div class="edit-profile-button">
+                    <form class="edit-profile" action="{% url 'edit_profile' request.user.member.id %}">
+                        <input type="submit" value="Update Profile" />
+                    </form>
+                </div>
+                <div class="banner">
+                    <h1>{{ request.user.member.display_name }}</h1>
+                </div>
+                <!-- Member information -->
+                <div class="member-info">
+                    <div class="member-photo">
+                        <img src="{{ request.user.member.photo.url }}" alt="">
+                    </div>
+                    <div class="details">
+                        <table class="furnished-info">
+                            <tr>
+                                <td>
+                                    <b>Branch : </b>
+                                </td>
+                                <td>
+                                    {% for branch in branches %}
+                                        {% if branch.0 == request.user.member.branch %}
+                                            {{ branch.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Company/Business : </b>
+                                </td>
+                                <td>
+                                    {{ request.user.member.work }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Address : </b>
+                                </td>
+                                <td>
+                                    {{ request.user.member.address }}
+                                </td>
+                            </tr>
+                            {% if request.user.member.indian_state %}
+                            <tr>
+                                <td>
+                                    <b>State : </b>
+                                </td>
+                                <td>
+                                    {% for state in states %}
+                                        {% if state.0 == request.user.member.indian_state %}
+                                            {{ state.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>
+                                    <b>Country : </b>
+                                </td>
+                                <td>
+                                    {% for country in countries %}
+                                        {% if country.0 == request.user.member.country %}
+                                            {{ country.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b><i class="fas fa-envelope"></i> : </b>
+                                </td>
+                                <td>
+                                    {{ request.user.member.email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b><i class="fas fa-phone"></i> : </b>
+                                </td>
+                                <td>
+                                    {{ request.user.member.phone }}
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div class="add-pic-button">
+                    <form action="{% url 'add_pic'  request.user.member.id  %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Add Image" />
+                    </form>
+                </div> 
+                <div class="remaining-pics-headline">
+                    <h1>Other Photos:</h1>
+                </div>
+                <section class="image-cards">
+                    {% if images %}
+                        {% for image in images %}
+                            <div class="image-card">
+                                <a class="example-image-link" href="{{ image.photo.url }}" data-lightbox="example-set" data-title="{{ image.caption }}">
+                                    <img class="example-image" src="{{ image.photo.url }}" alt=""/>
+                                </a>
+                                <div class="member-image-buttons">
+                                    <form action="{% url 'edit_pic' image.id %}">
+<!--                                             
+                                            <input type="submit" value="Edit Pic" />
+                                             -->
+                                            <button type="submit">
+                                                <i class="fas fa-edit"> Edit</i> 
+                                            </button>
+                                    </form> 
+                                    <form action="{% url 'delete_pic' image.id %}">
+<!--                                             
+                                            <input type="submit" value="Delete Pic" />
+                                             -->
+                                            <button type="submit">
+                                                <i class="fas fa-trash-alt"> Delete</i> 
+                                            </button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </section>
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+{% endblock %}

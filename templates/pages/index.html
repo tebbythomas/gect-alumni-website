@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+    <div class="container">
+            {% include 'partials/_alerts.html' %}
+        <div class="banner">
+            <h1>Welcome, 1984 GECT Alumni</h1>
+            <!--             
+            <img class="banner-image" src="img/banner1.jpg" alt="" />
+             -->
+            <div class="slideshow-container">
+                {% if banner_pics %}
+                    {% for banner_pic in banner_pics %}
+                        <div class="mySlides fade">
+                            <img src="{{ banner_pic.photo.url }}" style="width:100%">
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                {% if banner_pics %}
+                    {% for banner_pic in banner_pics %}
+                        <span class="dot"></span>
+                    {% endfor %}
+                {% endif %} 
+            </div>
+        </div>
+        <div class="news-home"><h2>Latest News</h2></div>
+        
+        <section class="news-cards-home">
+            {% if news_articles %}
+                {% for news_article in news_articles %}
+                    <div>
+                        <img src="{{ news_article.photo.url }}" alt="">
+                        <h3>{{ news_article.headline }}</h3>
+                        <p>
+                            {{ news_article.brief_description }}
+                        </p>
+                        <a href="{% url 'news_article' news_article.id %}">Learn More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+        <div class="alumni-map">
+            <h2>Alumni around the world</h2>
+            <div id="map" style="height: 300px;"></div>      
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        var slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+    </script>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = {lat: -25.344, lng: 131.036};
+            var bengaluru = {lat: 12.971, lng: 77.595};
+            var dubai = {lat: 25.075, lng: 54.947};
+            var abu_dhabi = {lat: 24.387, lng: 54.278};
+            var toronto = {lat: 43.718, lng: -79.518};
+            var new_york = {lat: 40.697, lng: -74.259};
+            var hague = {lat: 52.071, lng: 4.239};
+            var tasmania = {lat: -41.570, lng: 143.919};
+            var kuwait = {lat: 29.148, lng: 48.113}
+            var gect = {lat: 10.553, lng: 76.222};
+            var libya = {lat: 26.077, lng: 8.304}
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 2, center: libya});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({position: uluru, map: map});
+            var marker = new google.maps.Marker({position: bengaluru, map: map});
+            var marker = new google.maps.Marker({position: dubai, map: map});
+            var marker = new google.maps.Marker({position: abu_dhabi, map: map});
+            var marker = new google.maps.Marker({position: toronto, map: map});
+            var marker = new google.maps.Marker({position: new_york, map: map});
+            var marker = new google.maps.Marker({position: hague, map: map});
+            var marker = new google.maps.Marker({position: tasmania, map: map});
+            var marker = new google.maps.Marker({position: kuwait, map: map});
+            var marker = new google.maps.Marker({position: gect, map: map});
+        }
+            
+    </script>
+    <!--Load the API from the specified URL
+        * The async attribute allows the browser to render the page while the API loads
+        * The key parameter will contain your own API key (which is not needed for this tutorial)
+        * The callback parameter executes the initMap() function
+        -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuz5atWZYnmmC0IVk5220q_BWuJ0L7bcY&callback=initMap">
+    </script>
+{% endblock %}

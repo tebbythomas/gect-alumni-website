@@ -1,0 +1,13 @@
+asgiref==3.2.3
+cachetools==4.0.0
+httplib2==0.17.0
+Pillow==7.0.0
+psycopg2-binary==2.8.4
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pytz==2019.3
+rsa==4.0
+six==1.14.0
+sqlparse==0.3.0
+uritemplate==3.0.1
+Django==3.0.3

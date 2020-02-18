@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Edit Pic
+{% endblock %}
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}"> -->
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <div class="form-div">
+                <form enctype="multipart/form-data" action="{% url 'edit_pic' memberPic.pk %}"
+                    method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Save Changes">
+                </form>
+            </div>
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+        {% include 'partials/_alerts.html' %}
+    </div>
+{% endblock %}

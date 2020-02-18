@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Members
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="banner">
+            <h1>1984 Alumni Members</h1>
+        </div>
+        {% if request.user.is_authenticated %}
+            {% if request.user.member.is_authorized == True %}
+                <div class="search">
+                    <form class="search-members" action="#">
+                        <input type="text" placeholder="Search by name" name="search-members">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- Member Cards-->
+                <section class="member-cards">
+                    {% if members %}
+                        {% for member in members %}
+                            <div class="member-card">
+                                <img src="{{ member.photo.url }}" alt="Avatar">
+                                <div class="member-details">
+                                    <h4><b>{{ member.display_name }}</b></h4>
+                                    {% for branch in branches %}
+                                        {% if branch.0 == member.branch %}
+                                            <p>{{ branch.1 }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a href="{% url 'individual_member' member.id %}">See More <i class="fas fa-chevron-right"></i></a> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </section>
+            {% else %}
+                <div>Sorry {{ user.username }}, you cannot view this page until the administrator authorizes you</div>
+            {% endif %}
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.querySelector('.menu-btn').addEventListener('click', () => document.querySelector('.main-menu').classList.toggle('show'));
+    </script>
+{% endblock %}

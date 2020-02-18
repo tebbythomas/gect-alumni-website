@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Member-Info
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'members' %}">Members</a></li>
+                <li>Member</li>
+            </ul>
+        </div>
+        {% if request.user.is_authenticated %}
+            {% if request.user.member.is_authorized == True %}
+                <div class="banner">
+                    <h1>{{ member.display_name }}</h1>
+                </div>
+                <!-- Member information -->
+                <div class="member-info">
+                    <div class="member-photo">
+                        <img src="{{ member.photo.url }}" alt="">
+                    </div>
+                    <div class="details">
+                        <table class="furnished-info">
+                            <tr>
+                                <td>
+                                    <b>Branch : </b>
+                                </td>
+                                <td>
+                                    {% for branch in branches %}
+                                        {% if branch.0 == member.branch %}
+                                            {{ branch.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Company/Business : </b>
+                                </td>
+                                <td>
+                                    {{ member.work }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Address : </b>
+                                </td>
+                                <td>
+                                    {{ member.address }}
+                                </td>
+                            </tr>
+                            {% if member.indian_state %}
+                            <tr>
+                                <td>
+                                    <b>State : </b>
+                                </td>
+                                <td>
+                                    {% for state in states %}
+                                        {% if state.0 == member.indian_state %}
+                                            {{ state.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>
+                                    <b>Country : </b>
+                                </td>
+                                <td>
+                                    {% for country in countries %}
+                                        {% if country.0 == member.country %}
+                                            {{ country.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b><i class="fas fa-envelope"></i> : </b>
+                                </td>
+                                <td>
+                                    {{ member.email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b><i class="fas fa-phone"></i> : </b>
+                                </td>
+                                <td>
+                                    {{ member.phone }}
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div class="remaining-pics-headline">
+                    <h1>Other Photos:</h1>
+                </div>
+                <section class="image-cards">
+                    {% if images %}
+                        {% for image in images %}
+                            <div class="image-card">
+                                <a class="example-image-link" href="{{ image.photo.url }}" data-lightbox="example-set" data-title="{{ image.caption }}">
+                                    <img class="example-image" src="{{ image.photo.url }}" alt=""/>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </section>
+            {% else %}
+                <div>Sorry {{ user.username }}, you cannot view this page until the administrator authorizes you</div>
+            {% endif %}
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+{% endblock %}

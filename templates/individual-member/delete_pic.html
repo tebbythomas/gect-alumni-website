@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Delete Pic
+{% endblock %}
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}"> -->
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <div class="form-div">
+                <form enctype="multipart/form-data" action="{% url 'delete_pic' memberPic.pk %}"
+                    method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    Are you sure you want to delete this pic?
+                    <input type="submit" value="Delete">
+                    <a href="{% url 'view_profile' memberPic.member.id %}">Cancel</a>
+                </form>
+            </div>
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+        {% include 'partials/_alerts.html' %}
+    </div>
+{% endblock %}

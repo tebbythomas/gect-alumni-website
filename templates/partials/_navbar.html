@@ -1,0 +1,49 @@
+{% load static %}
+<!-- Nav bar and Hamburger menu -->
+<div class="menu-btn">
+    <i class="fas fa-bars fa-2x"></i>
+</div>
+<div class="navbar-bg">
+    <div class="container">
+        <!-- Nav bar -->
+        <nav class="main-nav">
+            <img src="{% static 'img/logo.png' %}" alt="GECT-Alumni" class="logo">
+            <ul class="main-menu show">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'news_list' %}">News</a></li>
+                <li><a href="{% url 'members' %}">Members</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'stats' %}">Stats</a></li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a class="sign-in" href="{% url 'view_profile' request.user.member.id %}">
+                                View Profile
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="right-menu">
+                {% if request.user.is_authenticated %}
+                <li>
+                        Hi {{ user.member.display_name }}
+                </li>
+                <li>
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </a>
+                    <form id="logout" action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
+                </li>
+                {% else %}
+                    <li>
+                        <a class="sign-in" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt"></i> Log in
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>  
+</div>

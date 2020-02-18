@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Add Pic
+{% endblock %}
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}"> -->
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <div class="form-div">
+                <form enctype="multipart/form-data" action="{% url 'add_pic' member_id %}" method="post">
+                    {% csrf_token %}
+                    <label for="photo">Upload pic</label>
+                    <input type="file" name="photo" class="form-control" accept="image/*" required>
+                    <label for="caption">Enter caption</label>
+                    <input type="text" name="caption" class="form-control">
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+        {% else %}
+            <div> Sorry, only registered and admin authorized users can view this page</div>
+        {% endif %}
+        {% include 'partials/_alerts.html' %}
+    </div>
+{% endblock %}

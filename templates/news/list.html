@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+News
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <!-- News Cards-->
+        <div class="banner">
+            <h1>News & Announcements</h1>
+        </div>
+        <section class="news-cards">
+            {% if news_articles %}
+                {% for news_article in news_articles %}
+                    <div>
+                        <img src="{{ news_article.photo.url }}" alt="">
+                        <h3>{{ news_article.headline }}</h3>
+                        <p>
+                            {{ news_article.brief_description }}
+                        </p>
+                        <a href="{% url 'news_article' news_article.id %}">Learn More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                {% endfor %}
+            {% endif %}           
+        </section>
+    </div>
+{% endblock %}

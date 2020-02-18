@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="login-div">
+        <form action="{% url 'login' %}" class="login" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+            <br>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? You can register here: <br>
+            <a class="login" href="{% url 'register' %}">Register Account</a></p>
+    </div>
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html' %}
+</div>
+{% endblock %}

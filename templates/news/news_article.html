@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+News-Article
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'news_list' %}">News</a></li>
+                <li>News-Article</li>
+            </ul>
+        </div>
+        <div class="banner">
+            <h1>{{ news_article.headline }}</h1>
+            <img class="banner-image" src="{{ news_article.photo.url }}" alt="" />
+        </div>
+        <div class="news-article">
+            <p>
+                {{ news_article.full_article }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

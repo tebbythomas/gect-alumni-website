@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="register-div">
+        <form class="register" action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" required>
+            <br>
+            <label for="password2">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+            <br>
+            <label for="password">Confirm Password:</label>
+            <input type="password" name="password2" class="form-control" required>
+            <br>
+            <label for="display_name">Name as you want displayed:</label>
+            <input type="text" name="display_name" class="form-control" required>
+            <br>
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch">
+                <option value="chemical">Chemical Engineering</option>
+                <option value="civil">Civil Engineering</option>
+                <option value="electrical">Electrical Engineering</option>
+                <option value="production">Production Engineering</option>
+                <option value="mechanical">Mechanical Engineering</option>
+            </select>
+            <br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,824 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Stats
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/highcharts.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <!-- News Cards-->
+        <div class="banner">
+            <h1>Stats of the 1984 batch</h1>
+        </div>
+        <div class="stats">
+            <div id="bar-chart1"></div>
+            <div id="pie-chart1"></div>
+            <div class="gauges">
+                <div id="electrical-gauge"></div>
+                <div id="mechanical-gauge"></div>
+                <div id="chemical-gauge"></div>
+                <div id="civil-gauge"></div>
+                <div id="production-gauge"></div>               
+            </div>           
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Highcharts.chart('bar-chart1', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Distribution of Alumni Members'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Kerala',
+                        'Karnataka',
+                        'Maharashtra',
+                        'Tamil Nadu',
+                        'USA',
+                        'Netherlands',
+                        'Australia',
+                        'UK'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Number of Alumni Members'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Count',
+                    data: [50, 5, 3, 5, 7, 2, 4, 2]
+                }]
+            });
+        });
+    </script>
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Highcharts.chart('pie-chart1', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Distribution of members by branch'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '% of Alumni',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Mechanical',
+                            y: 24.7,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: 'Civil',
+                            y: 24.7
+                        }, {
+                            name: 'Chemical',
+                            y: 24.7
+                        }, {
+                            name: 'Electrical',
+                            y: 14.7
+                        }, {
+                            name: 'Production',
+                            y: 11.2
+                        }]
+                    }]
+                });
+            });
+        </script>
+        <script>
+                Highcharts.chart('electrical-gauge-1', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+        <script>
+                Highcharts.chart('electrical-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+        <script>
+                Highcharts.chart('mechanical-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+        <script>
+                Highcharts.chart('chemical-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+        <script>
+                Highcharts.chart('civil-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+        <script>
+                Highcharts.chart('production-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: 'Electrical'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 33,
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 17,
+                            color: '#DF5353' // red
+                        }, {
+                            from: 18,
+                            to: 25,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: 26,
+                            to: 33,
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [22],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                        setInterval(function () {
+                            var point = chart.series[0].points[0],
+                                newVal,
+                                inc = Math.round((Math.random() - 0.5) * 20);
+                
+                            newVal = point.y + inc;
+                            if (newVal < 0 || newVal > 200) {
+                                newVal = point.y - inc;
+                            }
+                
+                            point.update(22);
+                
+                        }, 3000);
+                    }
+                });
+        </script>
+{% endblock %}
