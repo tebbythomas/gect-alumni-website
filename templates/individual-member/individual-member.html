@@ -38,6 +38,7 @@ Member-Info
                                     {% endfor %}
                                 </td>
                             </tr>
+                            {% if member.work %}
                             <tr>
                                 <td>
                                     <b>Company/Business : </b>
@@ -46,6 +47,8 @@ Member-Info
                                     {{ member.work }}
                                 </td>
                             </tr>
+                            {% endif %}
+                            {% if member.address %}
                             <tr>
                                 <td>
                                     <b>Address : </b>
@@ -54,6 +57,7 @@ Member-Info
                                     {{ member.address }}
                                 </td>
                             </tr>
+                            {% endif %}
                             {% if member.indian_state %}
                             <tr>
                                 <td>
@@ -68,6 +72,7 @@ Member-Info
                                 </td>
                             </tr>
                             {% endif %}
+                            <!--                             
                             <tr>
                                 <td>
                                     <b>Country : </b>
@@ -79,7 +84,8 @@ Member-Info
                                         {% endif %}
                                     {% endfor %}
                                 </td>
-                            </tr>
+                            </tr> 
+                            -->
                             <tr>
                                 <td>
                                     <b><i class="fas fa-envelope"></i> : </b>

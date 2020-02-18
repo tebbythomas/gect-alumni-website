@@ -16,10 +16,17 @@ View Profile
             </ul>
         </div>
         {% if request.user.is_authenticated %}
-                <div class="change-password-button">
-                    <form class="change-password" action="{% url 'change_password' %}">
-                        <input type="submit" value="Change Password" />
-                    </form>
+                <div class="credentials">
+                    <div class="change-username-button">
+                        <form class="change-username" action="{% url 'change_username' %}">
+                            <input type="submit" value="Change Username" />
+                        </form>
+                    </div>
+                    <div class="change-password-button">
+                            <form class="change-password" action="{% url 'change_password' %}">
+                                <input type="submit" value="Change Password" />
+                            </form>
+                    </div>
                 </div>
                 <div class="edit-profile-button">
                     <form class="edit-profile" action="{% url 'edit_profile' request.user.member.id %}">

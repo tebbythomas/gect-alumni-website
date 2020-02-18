@@ -93,3 +93,18 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', {
         'form': form
     })
+
+def change_username(request):
+    if request.method == 'POST':
+        new_username = request.POST['new-username']
+        curr_username = request.POST['curr-username']
+        if User.objects.filter(username=new_username).exists():
+            messages.error(request, 'That username is taken')
+            return redirect('change_username')
+        user = User.objects.get(username = curr_username)
+        user.username = new_username
+        user.save()
+        messages.success(request, 'Your username was successfully updated!')
+        return redirect('index')
+    else:
+        return render(request, 'accounts/change-username.html')

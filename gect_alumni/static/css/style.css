@@ -312,7 +312,7 @@ ul {
 }
 
 .change-password-button{
-    float:left;
+    padding-left: 20px;
 }
 .change-password-button input[type=submit]{
     background-color: #0275d8;
@@ -323,6 +323,21 @@ ul {
     border-radius: 15px;
 }
 .change-password-button input[type=submit]:hover{
+    cursor: pointer;
+}
+
+.change-username-button{
+    float:left;
+}
+.change-username-button input[type=submit]{
+    background-color: #0275d8;
+    padding: 8px;
+    font-size: 18px;
+    color: #ffffff;
+    border: 1px solid silver; 
+    border-radius: 15px;
+}
+.change-username-button input[type=submit]:hover{
     cursor: pointer;
 }
 
@@ -402,6 +417,11 @@ ul {
 
 .news-cards a:hover, .member-cards a:hover, .news-cards-home a:hover{
     border-bottom: 2px solid #0067b8;
+}
+
+.credentials{
+    display: flex;
+    flex-direction: row;
 }
 
 .banner{
