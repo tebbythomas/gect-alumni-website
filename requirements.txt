@@ -1,7 +1,14 @@
+appdirs==1.4.3
 asgiref==3.2.3
 cachetools==4.0.0
+certifi==2019.11.28
+distlib==0.3.0
+Django==3.0.3
+filelock==3.0.12
 httplib2==0.17.0
+importlib-metadata==1.5.0
 Pillow==7.0.0
+pipenv==2018.11.26
 psycopg2-binary==2.8.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
@@ -10,4 +17,6 @@ rsa==4.0
 six==1.14.0
 sqlparse==0.3.0
 uritemplate==3.0.1
-Django==3.0.3
+virtualenv==20.0.4
+virtualenv-clone==0.5.3
+zipp==2.2.0
