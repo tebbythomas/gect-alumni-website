@@ -258,6 +258,6 @@ class Member(models.Model):
     indian_state = models.CharField(max_length=200, choices=INDIAN_STATE_CHOICES, null=True, blank=True)
     email = models.CharField(max_length=200, blank=True)
     phone = models.CharField(max_length=200, blank=True)
-    photo = models.ImageField(upload_to='member/%Y/%m/%d/', default='default/default.png', blank=True)
+    photo = models.ImageField(upload_to='member/%Y/%m/%d/', default='default/default-profile.jpg', blank=True)
     def __str__(self):
         return self.display_name

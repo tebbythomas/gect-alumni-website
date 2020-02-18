@@ -78,8 +78,11 @@ Home
         // Initialize and add the map
         function initMap() {
             // The location of Uluru
-            var uluru = {lat: -25.344, lng: 131.036};
+            var oman = {lat: 21.386, lng: 51.656};
             var bengaluru = {lat: 12.971, lng: 77.595};
+            var chennai = {lat: 13.047, lng: 80.068};
+            var qatar = {lat: 25.343, lng: 50.657};
+            var saudi_arabia = {lat: 23.834, lng: 36.046};
             var dubai = {lat: 25.075, lng: 54.947};
             var abu_dhabi = {lat: 24.387, lng: 54.278};
             var toronto = {lat: 43.718, lng: -79.518};
@@ -89,11 +92,11 @@ Home
             var kuwait = {lat: 29.148, lng: 48.113}
             var gect = {lat: 10.553, lng: 76.222};
             var libya = {lat: 26.077, lng: 8.304}
-            // The map, centered at Uluru
+            // The map, centered at oman
             var map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 2, center: libya});
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({position: uluru, map: map});
+            // The marker, positioned at oman
+            var marker = new google.maps.Marker({position: oman, map: map});
             var marker = new google.maps.Marker({position: bengaluru, map: map});
             var marker = new google.maps.Marker({position: dubai, map: map});
             var marker = new google.maps.Marker({position: abu_dhabi, map: map});
@@ -102,6 +105,9 @@ Home
             var marker = new google.maps.Marker({position: hague, map: map});
             var marker = new google.maps.Marker({position: tasmania, map: map});
             var marker = new google.maps.Marker({position: kuwait, map: map});
+            var marker = new google.maps.Marker({position: chennai, map: map});
+            var marker = new google.maps.Marker({position: qatar, map: map});
+            var marker = new google.maps.Marker({position: saudi_arabia, map: map});
             var marker = new google.maps.Marker({position: gect, map: map});
         }
             

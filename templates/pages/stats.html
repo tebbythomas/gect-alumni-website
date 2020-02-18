@@ -36,6 +36,7 @@ Stats
                 chart: {
                     type: 'column'
                 },
+                
                 title: {
                     text: 'Distribution of Alumni Members'
                 },
@@ -48,10 +49,17 @@ Stats
                         'Karnataka',
                         'Maharashtra',
                         'Tamil Nadu',
+                        'Gujarat',
                         'USA',
                         'Netherlands',
                         'Australia',
-                        'UK'
+                        'UK',
+                        'Kuwait',
+                        'UAE',
+                        'Oman',
+                        'Qatar',
+                        'Saudi Arabia'
+
                     ],
                     crosshair: true
                 },
@@ -77,7 +85,7 @@ Stats
                 },
                 series: [{
                     name: 'Count',
-                    data: [50, 5, 3, 5, 7, 2, 4, 2]
+                    data: [41, 7, 6, 4, 1, 4, 1, 4, 2, 5, 4, 2, 2, 2]
                 }]
             });
         });
@@ -263,7 +271,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical'
+                        text: 'Chemical Engineering'
                     },
                 
                     pane: {
@@ -302,7 +310,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 33,
+                        max: 45,
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -324,46 +332,29 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 17,
+                            to: 22,
                             color: '#DF5353' // red
                         }, {
-                            from: 18,
-                            to: 25,
+                            from: 22,
+                            to: 33,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 26,
-                            to: 33,
+                            from: 33,
+                            to: 45,
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [22],
+                        data: [19],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
                     }]
                 
                 },
-                // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
+                );
         </script>
         <script>
                 Highcharts.chart('mechanical-gauge', {
@@ -377,7 +368,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical'
+                        text: 'Civil Engineering'
                     },
                 
                     pane: {
@@ -416,7 +407,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 33,
+                        max: 58,
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -438,15 +429,15 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 17,
+                            to: 29,
                             color: '#DF5353' // red
                         }, {
-                            from: 18,
-                            to: 25,
+                            from: 29,
+                            to: 44,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 26,
-                            to: 33,
+                            from: 44,
+                            to: 58,
                             color: '#55BF3B' // green
                         }]
                     },
@@ -461,23 +452,7 @@ Stats
                 
                 },
                 // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
+                );
         </script>
         <script>
                 Highcharts.chart('chemical-gauge', {
@@ -491,7 +466,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical'
+                        text: 'Electrical Engineering'
                     },
                 
                     pane: {
@@ -530,7 +505,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 33,
+                        max: 42,
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -552,22 +527,22 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 17,
+                            to: 21,
                             color: '#DF5353' // red
                         }, {
-                            from: 18,
-                            to: 25,
+                            from: 21,
+                            to: 31,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 26,
-                            to: 33,
+                            from: 31,
+                            to: 42,
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [22],
+                        data: [13],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
@@ -575,23 +550,7 @@ Stats
                 
                 },
                 // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
+                );
         </script>
         <script>
                 Highcharts.chart('civil-gauge', {
@@ -605,7 +564,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical'
+                        text: 'Mechanical Engineering'
                     },
                 
                     pane: {
@@ -644,7 +603,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 33,
+                        max: 49,
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -666,15 +625,15 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 17,
+                            to: 25,
                             color: '#DF5353' // red
                         }, {
-                            from: 18,
-                            to: 25,
+                            from: 25,
+                            to: 37,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 26,
-                            to: 33,
+                            from: 37,
+                            to: 49,
                             color: '#55BF3B' // green
                         }]
                     },
@@ -688,24 +647,7 @@ Stats
                     }]
                 
                 },
-                // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
+                );
         </script>
         <script>
                 Highcharts.chart('production-gauge', {
@@ -719,7 +661,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical'
+                        text: 'Production Engineering'
                     },
                 
                     pane: {
@@ -758,7 +700,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 33,
+                        max: 14,
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -780,45 +722,28 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 17,
+                            to: 7,
                             color: '#DF5353' // red
                         }, {
-                            from: 18,
-                            to: 25,
+                            from: 7,
+                            to: 11,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 26,
-                            to: 33,
+                            from: 11,
+                            to: 14,
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [22],
+                        data: [10],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
                     }]
                 
                 },
-                // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
+                );
         </script>
 {% endblock %}

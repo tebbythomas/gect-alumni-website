@@ -12,7 +12,7 @@ Members
             {% if request.user.member.is_authorized == True %}
                 <div class="search">
                     <form class="search-members" action="#">
-                        <input type="text" placeholder="Search by name" name="search-members">
+                        <input type="text" placeholder="Search by name" name="search-members" value="{{ search_query }}">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>

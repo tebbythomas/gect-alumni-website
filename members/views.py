@@ -8,11 +8,21 @@ from members.forms import EditMemberForm
 from member_pics.forms import EditMemberPicForm, DeleteMemberPicForm
 
 def members(request):
-    members = Member.objects.all()
+    search_query = None
+    if request.method=='GET':
+        print("Get method!")
+        search_query = request.GET.get('search-members', None)
+        print(search_query)
+        if search_query is None:
+            members = Member.objects.all()
+        else:
+            members = Member.objects.filter(display_name__icontains=search_query)
     context = {
         'members' : members,
         'branches' : BRANCH_CHOICES
     }
+    if search_query is not None:
+        context['search_query'] = search_query
     return render(request,'members/members.html', context)
 
 def individual_member(request, member_id):
