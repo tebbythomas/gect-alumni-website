@@ -8,18 +8,36 @@ from members.forms import EditMemberForm
 from member_pics.forms import EditMemberPicForm, DeleteMemberPicForm
 
 def members(request):
-    search_query = None
+    sort_members_val = 'names-ascending'
+    filter_branch_val = 'all-branches'
     if request.method=='GET':
-        print("Get method!")
+        sort_query = request.GET.get('sort-members', None)
+        filter_query = request.GET.get('filter-branch', None)
         search_query = request.GET.get('search-members', None)
-        print(search_query)
-        if search_query is None:
-            members = Member.objects.all()
+        
+        search_query = request.GET.get('search-members', None)
+        if sort_query is not None or filter_query is not None:
+            print(f"sort_query={sort_query} and filter_query={filter_query}")
+            sort_param = 'display_name'
+            filter_param = filter_query
+            if sort_query == "names-descending":
+                sort_param = '-display_name'
+
+            if filter_param == 'all-branches':
+                members = Member.objects.all().order_by(sort_param)
+            else:
+                members = Member.objects.filter(branch=filter_param).order_by(sort_param)
+            sort_members_val = sort_query
+            filter_branch_val = filter_query
+        elif search_query is None:
+            members = Member.objects.all().order_by('display_name')
         else:
-            members = Member.objects.filter(display_name__icontains=search_query)
+            members = Member.objects.filter(display_name__icontains=search_query).order_by('display_name')
     context = {
         'members' : members,
-        'branches' : BRANCH_CHOICES
+        'branches' : BRANCH_CHOICES,
+        'sort_members' : sort_members_val,
+        'filter_branch' : filter_branch_val
     }
     if search_query is not None:
         context['search_query'] = search_query

@@ -10,7 +10,60 @@ Members
         </div>
         {% if request.user.is_authenticated %}
             {% if request.user.member.is_authorized == True %}
-                <div class="search">
+                <div class="member-query-results">
+                    <form action="#" class="filter-branch">
+                        <label class="sort-members" for="sort-members">Sort members:</label>
+                        <br>
+                        <select id="sort-members" name="sort-members">
+                            {% if sort_members == 'names-ascending' %}
+                                <option value="names-ascending" selected>Names A to Z</option>
+                            {% else %}
+                                <option value="names-ascending">Names A to Z</option>
+                            {% endif %}
+                            {% if sort_members == 'names-descending' %}
+                                <option value="names-descending" selected>Names Z to A</option>
+                            {% else %}
+                                <option value="names-descending">Names Z to A</option>
+                            {% endif %}
+                        </select>
+                        <br>
+                        <label class="filter-branch" for="filter-branch">Filter by Branch:</label>
+                        <br>
+                        <select id="filter-branch" name="filter-branch">
+                            {% if filter_branch == "all-branches" %}
+                                <option value="all-branches" selected>All branches</option>
+                            {% else %}
+                                <option value="all-branches">All branches</option>
+                            {% endif %}
+                            {% if filter_branch == 'chemical' %}
+                                <option value="chemical" selected>Chemical</option>
+                            {% else %}
+                                <option value="chemical">Chemical</option>
+                            {% endif %}
+                            {% if filter_branch == 'civil' %}
+                                <option value="civil" selected>Civil</option>
+                            {% else %}
+                                <option value="civil">Civil</option>
+                            {% endif %}
+                            {% if filter_branch == 'electrical' %}
+                                <option value="electrical" selected>Electrical</option>
+                            {% else %}
+                                <option value="electrical">Electrical</option>
+                            {% endif %}
+                            {% if filter_branch == 'mechanical' %}
+                                <option value="mechanical" selected>Mechanical</option>
+                            {% else %}
+                                <option value="mechanical">Mechanical</option>
+                            {% endif %}
+                            {% if filter_branch == 'production' %}
+                                <option value="production" selected>Production</option>
+                            {% else %}
+                                <option value="production">Production</option>
+                            {% endif %}
+                        </select>
+                        <br>
+                        <button class="filter-branch" type="submit">Get Results</button>
+                    </form>
                     <form class="search-members" action="#">
                         <input type="text" placeholder="Search by name" name="search-members" value="{{ search_query }}">
                         <button type="submit"><i class="fas fa-search"></i></button>
@@ -42,9 +95,4 @@ Members
             <div> Sorry, only registered and admin authorized users can view this page</div>
         {% endif %}
     </div>
-{% endblock %}
-{% block extra_js %}
-    <script>
-        document.querySelector('.menu-btn').addEventListener('click', () => document.querySelector('.main-menu').classList.toggle('show'));
-    </script>
 {% endblock %}

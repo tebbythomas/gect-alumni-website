@@ -224,7 +224,7 @@ ul {
 }
 .gauges{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 .page-footer {
     background-color: #790000;
@@ -437,7 +437,15 @@ ul {
     padding-bottom: 10px;
 }
 
-@media(max-width: 700px) {
+.banner img{
+    height: 350px;
+}
+
+.news-image img{
+    max-height: 500px;
+}
+
+@media(max-width: 900px) {
     .menu-btn {
         display: block;
     }
@@ -487,27 +495,69 @@ ul {
     .gauges{
         grid-template-columns: repeat(2, 1fr);
     }
+    .news-image img{
+        max-height: 250px;
+    }
+    .banner img{
+        height: 250px;
+    }
+    .details{
+        font-size: 17px;
+    }
+    .member-info .member-photo img{
+        max-width:700px;
+    }
 }
+
+.member-query-results{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+form.filter-branch select{
+    font-size: 17px;
+}
+
+form.filter-branch label.filter-branch{
+    padding-top: 20px;
+}
+
+form.filter-branch button.filter-branch{
+    margin-top: 20px;
+    color: #fff;
+    font-size: 17px;
+    padding: 5px;
+    background: #0275d8;
+    border: 1px solid silver; 
+    border-radius: 15px;
+}
+
+form.filter-branch button.filter-branch:hover{
+    cursor: pointer;
+}
+
+
 
 /* search members button */
 /* Style the search field */
 form.search-members input[type=text] {
-    padding: 10px;
-    font-size: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
     border: 1px solid grey;
-    float: right;
-    max-width: 200px;
+    max-width: 150px;
     background: #f1f1f1;
   }
   
   /* Style the submit button */
   form.search-members button {
-    float: right;
     max-width: 40px;
     padding: 10px;
     background: #2196F3;
     color: white;
-    font-size: 17px;
+    font-size: 15px;
     border: 1px solid grey;
     border-left: none; /* Prevent double borders */
     cursor: pointer;
@@ -564,6 +614,18 @@ form.search-members input[type=text] {
     }
     .gauges{
         grid-template-columns: 1fr;
+    }
+    .news-image img{
+        max-height: 150px;
+    }
+    .banner img{
+        height: 150px;
+    }
+    .details{
+        font-size: 13px;
+    }
+    .member-info .member-photo img{
+        max-width:350px;
     }
 }
 

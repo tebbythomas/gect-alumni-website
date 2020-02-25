@@ -13,7 +13,9 @@ News-Article
         </div>
         <div class="banner">
             <h1>{{ news_article.headline }}</h1>
-            <img class="banner-image" src="{{ news_article.photo.url }}" alt="" />
+            <div class="news-image">
+                <img class="news-banner-image" src="{{ news_article.photo.url }}" alt="" />
+            </div>
         </div>
         <div class="news-article">
             <p>

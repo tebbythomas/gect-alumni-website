@@ -20,14 +20,18 @@ def register(request):
         # Check if passwords match
         if password == password2:
             # Check username
-            if User.objects.filter(username=username).exists():
+            if ' ' in username:
+                messages.error(request, 'Username cannot have spaces')
+                return redirect('register')
+            if User.objects.filter(username__iexact=username).exists():
                 messages.error(request, 'That username is taken')
                 return redirect('register')
-            elif User.objects.filter(email=email).exists():
+            elif User.objects.filter(email__iexact=email).exists():
                 messages.error(request, 'That email is being used')
                 return redirect('register')
             else:
                 # Store user detals
+                email = email.lower()
                 user = User.objects.create_user(username=username, password=password, email=email)
                 # Login after register
                 # auth.login(request, user)
@@ -36,14 +40,27 @@ def register(request):
                 user.save()
                 member = Member(user=user, display_name=display_name, branch=branch, email=email)
                 member.save()
-                send_mail(
-                    'GECT Alumni New Account Registered - ' + display_name,
-                    'New account with name: ' + display_name + ', email: ' + email + ', branch: ' + branch + ' username: ' + username + ' regsitered with GECT Alumni. Login to authorize access ',
-                    'tebby.thomas@gmail.com',
-                    #[email, 'tebby.thomas@gmail.com'],
-                    ['tebby.thomas@gmail.com'],
-                    fail_silently=False
-                )
+                to_list = ['tomy.thomas@gmail.com', email]
+                if branch == 'chemical':
+                    to_list.append('profmadhugopal@gmail.com')
+                elif branch =='civil':
+                    to_list.append('hardahari@yahoo.co.in')
+                if branch == 'electrical':
+                    to_list.append('drpai1962@yahoo.com')
+                    to_list.append('sreekumarbkartha@gmail.com')
+                elif branch =='mechanical':
+                    to_list.append('drpai62@gmail.com')
+                elif branch =='production':
+                    to_list.append('avittom@gmail.com')
+                
+                # send_mail(
+                #     'GECT Alumni New Account Registered - ' + display_name,
+                #     'New account with name: ' + display_name + ', email: ' + email + ', branch: ' + branch + ' username: ' + username + ' regsitered with GECT Alumni. Login to authorize access ',
+                #     'tomy.thomas@gmail.com',
+                #     to_list,
+                #     fail_silently=True
+                # )
+
                 messages.success(request, 'You are now registered and can login')
                 return redirect('login')
         else:

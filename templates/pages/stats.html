@@ -14,7 +14,13 @@ Stats
         </div>
         <div class="stats">
             <div id="bar-chart1"></div>
+            <br>
+            <br>
+            <br>
             <div id="pie-chart1"></div>
+            <br>
+            <br>
+            <br>
             <div class="gauges">
                 <div id="electrical-gauge"></div>
                 <div id="mechanical-gauge"></div>
@@ -38,7 +44,7 @@ Stats
                 },
                 
                 title: {
-                    text: 'Distribution of Alumni Members'
+                    text: '<b>Distribution of Alumni Members</b>'
                 },
                 subtitle: {
                     text: ''
@@ -100,7 +106,7 @@ Stats
                         type: 'pie'
                     },
                     title: {
-                        text: 'Distribution of members by branch'
+                        text: '<b>Distribution of members by branch</b>'
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -125,334 +131,25 @@ Stats
                         colorByPoint: true,
                         data: [{
                             name: 'Mechanical',
-                            y: 24.7,
+                            y: {{ count_mechanical }} / {{ total_registered }} * 100,
                             sliced: true,
                             selected: true
                         }, {
                             name: 'Civil',
-                            y: 24.7
+                            y: {{ count_civil }} / {{ total_registered }} * 100
                         }, {
                             name: 'Chemical',
-                            y: 24.7
+                            y: {{ count_chemical }} / {{ total_registered }} * 100
                         }, {
                             name: 'Electrical',
-                            y: 14.7
+                            y: {{ count_electrical }} / {{ total_registered }} * 100
                         }, {
                             name: 'Production',
-                            y: 11.2
+                            y: {{ count_production }} / {{ total_registered }} * 100
                         }]
                     }]
                 });
             });
-        </script>
-        <script>
-                Highcharts.chart('electrical-gauge-1', {
-
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false
-                    },
-                
-                    title: {
-                        text: 'Electrical'
-                    },
-                
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 33,
-                
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: '#Registered'
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: 17,
-                            color: '#DF5353' // red
-                        }, {
-                            from: 18,
-                            to: 25,
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: 26,
-                            to: 33,
-                            color: '#55BF3B' // green
-                        }]
-                    },
-                
-                    series: [{
-                        name: '#',
-                        data: [22],
-                        tooltip: {
-                            valueSuffix: ' registered'
-                        }
-                    }]
-                
-                },
-                // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                                newVal,
-                                inc = Math.round((Math.random() - 0.5) * 20);
-                
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-                
-                            point.update(22);
-                
-                        }, 3000);
-                    }
-                });
-        </script>
-        <script>
-                Highcharts.chart('electrical-gauge', {
-
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false
-                    },
-                
-                    title: {
-                        text: 'Chemical Engineering'
-                    },
-                
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 45,
-                
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: '#Registered'
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: 22,
-                            color: '#DF5353' // red
-                        }, {
-                            from: 22,
-                            to: 33,
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: 33,
-                            to: 45,
-                            color: '#55BF3B' // green
-                        }]
-                    },
-                
-                    series: [{
-                        name: '#',
-                        data: [19],
-                        tooltip: {
-                            valueSuffix: ' registered'
-                        }
-                    }]
-                
-                },
-                );
-        </script>
-        <script>
-                Highcharts.chart('mechanical-gauge', {
-
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false
-                    },
-                
-                    title: {
-                        text: 'Civil Engineering'
-                    },
-                
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 58,
-                
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: '#Registered'
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: 29,
-                            color: '#DF5353' // red
-                        }, {
-                            from: 29,
-                            to: 44,
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: 44,
-                            to: 58,
-                            color: '#55BF3B' // green
-                        }]
-                    },
-                
-                    series: [{
-                        name: '#',
-                        data: [22],
-                        tooltip: {
-                            valueSuffix: ' registered'
-                        }
-                    }]
-                
-                },
-                // Add some life
-                );
         </script>
         <script>
                 Highcharts.chart('chemical-gauge', {
@@ -466,7 +163,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Electrical Engineering'
+                        text: '<b>Chemical Engineering</b>'
                     },
                 
                     pane: {
@@ -505,7 +202,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 42,
+                        max: {{ total_chemical_strength }},
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -527,29 +224,28 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 21,
+                            to: {{ total_chemical_strength }} / 2,
                             color: '#DF5353' // red
                         }, {
-                            from: 21,
-                            to: 31,
+                            from: {{ total_chemical_strength }} / 2,
+                            to: {{ total_chemical_strength }} * 0.75,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 31,
-                            to: 42,
+                            from: {{ total_chemical_strength }} * 0.75,
+                            to: {{ total_chemical_strength }},
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [13],
+                        data: [{{ count_chemical }}],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
                     }]
                 
                 },
-                // Add some life
                 );
         </script>
         <script>
@@ -564,7 +260,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Mechanical Engineering'
+                        text: '<b>Civil Engineering</b>'
                     },
                 
                     pane: {
@@ -603,7 +299,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 49,
+                        max: {{ total_civil_strength }},
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -625,22 +321,218 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 25,
+                            to: {{ total_civil_strength }} / 2,
                             color: '#DF5353' // red
                         }, {
-                            from: 25,
-                            to: 37,
+                            from: {{ total_civil_strength }} / 2,
+                            to: {{ total_civil_strength }} * 0.75,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 37,
-                            to: 49,
+                            from: {{ total_civil_strength }} * 0.75,
+                            to: {{ total_civil_strength }},
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [22],
+                        data: [{{ count_civil }}],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                );
+        </script>
+        <script>
+                Highcharts.chart('electrical-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: '<b>Electrical Engineering</b>'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: {{ total_electrical_strength }},
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: {{ total_electrical_strength }} / 2,
+                            color: '#DF5353' // red
+                        }, {
+                            from: {{ total_electrical_strength }} / 2,
+                            to: {{ total_electrical_strength }} * 0.75,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: {{ total_electrical_strength }} * 0.75,
+                            to: {{ total_electrical_strength }},
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [{{ count_electrical }}],
+                        tooltip: {
+                            valueSuffix: ' registered'
+                        }
+                    }]
+                
+                },
+                // Add some life
+                );
+        </script>
+        <script>
+                Highcharts.chart('mechanical-gauge', {
+
+                    chart: {
+                        type: 'gauge',
+                        plotBackgroundColor: null,
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                
+                    title: {
+                        text: '<b>Mechanical Engineering</b>'
+                    },
+                
+                    pane: {
+                        startAngle: -150,
+                        endAngle: 150,
+                        background: [{
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#FFF'],
+                                    [1, '#333']
+                                ]
+                            },
+                            borderWidth: 0,
+                            outerRadius: '109%'
+                        }, {
+                            backgroundColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                stops: [
+                                    [0, '#333'],
+                                    [1, '#FFF']
+                                ]
+                            },
+                            borderWidth: 1,
+                            outerRadius: '107%'
+                        }, {
+                            // default background
+                        }, {
+                            backgroundColor: '#DDD',
+                            borderWidth: 0,
+                            outerRadius: '105%',
+                            innerRadius: '103%'
+                        }]
+                    },
+                
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: {{ total_mechanical_strength }},
+                
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+                
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '#Registered'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: {{ total_mechanical_strength }} / 2,
+                            color: '#DF5353' // red
+                        }, {
+                            from: {{ total_mechanical_strength }} / 2,
+                            to: {{ total_mechanical_strength }} * 0.75,
+                            color: '#DDDF0D' // yellow
+                        }, {
+                            from: {{ total_mechanical_strength }} * 0.75,
+                            to: {{ total_mechanical_strength }},
+                            color: '#55BF3B' // green
+                        }]
+                    },
+                
+                    series: [{
+                        name: '#',
+                        data: [{{ count_mechanical }}],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
@@ -661,7 +553,7 @@ Stats
                     },
                 
                     title: {
-                        text: 'Production Engineering'
+                        text: '<b>Production Engineering</b>'
                     },
                 
                     pane: {
@@ -700,7 +592,7 @@ Stats
                     // the value axis
                     yAxis: {
                         min: 0,
-                        max: 14,
+                        max: {{ total_production_strength }},
                 
                         minorTickInterval: 'auto',
                         minorTickWidth: 1,
@@ -722,22 +614,22 @@ Stats
                         },
                         plotBands: [{
                             from: 0,
-                            to: 7,
+                            to: {{ total_production_strength }} / 2,
                             color: '#DF5353' // red
                         }, {
-                            from: 7,
-                            to: 11,
+                            from: {{ total_production_strength }} / 2,
+                            to: {{ total_production_strength }} * 0.75,
                             color: '#DDDF0D' // yellow
                         }, {
-                            from: 11,
-                            to: 14,
+                            from: {{ total_production_strength }} * 0.75,
+                            to: {{ total_production_strength }},
                             color: '#55BF3B' // green
                         }]
                     },
                 
                     series: [{
                         name: '#',
-                        data: [10],
+                        data: [{{ count_production }}],
                         tooltip: {
                             valueSuffix: ' registered'
                         }
