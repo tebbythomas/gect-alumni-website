@@ -21,9 +21,11 @@ Member-Info
                 </div>
                 <!-- Member information -->
                 <div class="member-info">
-                    <div class="member-photo">
-                        <img src="{{ member.photo.url }}" alt="">
-                    </div>
+                    {% if member.photo %}
+                        <div class="member-photo">
+                            <img src="{{ member.photo.url }}" alt="">
+                        </div>
+                    {% endif %}
                     <div class="details">
                         <table class="furnished-info">
                             <tr>

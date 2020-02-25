@@ -74,7 +74,9 @@ Members
                     {% if members %}
                         {% for member in members %}
                             <div class="member-card">
-                                <img src="{{ member.photo.url }}" alt="Avatar">
+                                {% if member.photo %}
+                                    <img src="{{ member.photo.url }}" alt="Avatar">
+                                {% endif %}
                                 <div class="member-details">
                                     <h4><b>{{ member.display_name }}</b></h4>
                                     {% for branch in branches %}

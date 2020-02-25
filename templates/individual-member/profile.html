@@ -38,9 +38,11 @@ View Profile
                 </div>
                 <!-- Member information -->
                 <div class="member-info">
+                    {% if member.photo %}
                     <div class="member-photo">
                         <img src="{{ request.user.member.photo.url }}" alt="">
                     </div>
+                    {% endif %}
                     <div class="details">
                         <table class="furnished-info">
                             <tr>
