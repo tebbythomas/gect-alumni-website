@@ -45,17 +45,18 @@ def register(request):
                     to_list.append('profmadhugopal@gmail.com')
                 elif branch =='civil':
                     to_list.append('hardahari@yahoo.co.in')
-                if branch == 'electrical':
+                elif branch == 'electrical':
                     to_list.append('drpai1962@yahoo.com')
                     to_list.append('sreekumarbkartha@gmail.com')
                 elif branch =='mechanical':
                     to_list.append('drpai62@gmail.com')
+                    to_list.append('antojoyp@gmail.com')
                 elif branch =='production':
                     to_list.append('avittom@gmail.com')
                 
                 # send_mail(
-                #     'GECT Alumni New Account Registered - ' + display_name,
-                #     'New account with name: ' + display_name + ', email: ' + email + ', branch: ' + branch + ' username: ' + username + ' regsitered with GECT Alumni. Login to authorize access ',
+                #     'GECT Alumni 1984 - New Account Registered : ' + display_name,
+                #     'Hello Administrator,\n\nNew account registered on the GECT Alumni 1984 website (https://tec84.in) with the following details:\n\nName: ' + display_name + '\nEmail: ' + email + '\nBranch: ' + branch + '\nUsername: ' + username + '\n\nYou may login at the following link to authorize access:\nhttps://tec84.in/admin \n\nThanks and Regards,\nGECT-Alumni 1984 Team',
                 #     'tomy.thomas@gmail.com',
                 #     to_list,
                 #     fail_silently=True
